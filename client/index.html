@@ -2,12 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>client</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="PethomePageOleksii.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <h2>Pet Login</h2>
+    <form action="/PETpetPageAmanda" method="POST">
+      <label for="pet">Pet name:</label>
+      <input
+        type="text"
+        id="pet"
+        name="pet"
+        placeholder="Enter pet's name"
+        required
+      />
+      <button type="submit">Login</button>
+    </form>
+    <hr />
+    <form action="/PETmakePet" method="GET">
+      <button type="submit">Make pet</button>
+    </form>
+    <a href="pages/petPage.html">go to pet page</a>
+    <a href="pages/animalGallery.html">go to Pet Creation page</a>
   </body>
 </html>
