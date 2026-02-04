@@ -26,9 +26,9 @@ myServer.listen(4242, () => {
 });
 
 // Set up a route handler -> tell the server what to actually do when it hears a GET request comes through port 4242 (from the client) /
-// myServer.get(`/`, (request, response) => {
-//   response.send(`Get Request Received. This is myServer's Root Get Response`);
-// });
+myServer.get(`/`, (request, response) => {
+  response.send(`Get Request Received. This is myServer's Root Get Response`);
+});
 
 myServer.post("/reviews", (request, response) => {
   const clientGame = request.body.game;
