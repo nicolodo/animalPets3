@@ -26,9 +26,9 @@ myServer.listen(4242, () => {
 });
 
 // Set up a route handler -> tell the server what to actually do when it hears a GET request comes through port 4242 (from the client) /
-myServer.get(`/`, (request, response) => {
-  response.send(`Get Request Received. This is myServer's Root Get Response`);
-});
+// myServer.get(`/`, (request, response) => {
+//   response.send(`Get Request Received. This is myServer's Root Get Response`);
+// });
 
 myServer.post("/reviews", (request, response) => {
   const clientGame = request.body.game;
@@ -38,4 +38,28 @@ myServer.post("/reviews", (request, response) => {
     clientGame,
     clientReview,
   ]);
+});
+
+//Oleksii lines
+myServer.get("/check-pet", async (request, response) => {
+  const petName = request.query.name;
+
+  // Length check
+  if (!petName || petName.trim().length < 1) {
+    return res.status(400).json({
+      exists: false,
+      error: "he pet's name must be at least 1 character long.",
+    });
+  }
+
+  try {
+    const result = await pool.query("SELECT * FROM pet WHERE name = $1", [
+      petName.trim(),
+    ]);
+
+    res.json({ exists: result.rows.length > 0 });
+  } catch (err) {
+    console.error("DB ERROR:", err);
+    res.status(500).json({ exists: false });
+  }
 });
