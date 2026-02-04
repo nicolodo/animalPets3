@@ -7,23 +7,64 @@
     <link rel="stylesheet" href="PethomePageOleksii.css" />
   </head>
   <body>
-    <h2>Pet Login</h2>
-    <form action="/PETpetPageAmanda" method="POST">
-      <label for="pet">Pet name:</label>
-      <input
-        type="text"
-        id="pet"
-        name="pet"
-        placeholder="Enter pet's name"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
-    <hr />
-    <form action="/PETmakePet" method="GET">
-      <button type="submit">Make pet</button>
-    </form>
-    <a href="pages/petPage.html">go to pet page</a>
-    <a href="pages/animalGallery.html">go to Pet Creation page</a>
+    <div id="form-container">
+      <h2>Pet Login</h2>
+      <form action="/PETpetPageAmanda" method="POST">
+        <label for="pet">Pet name:</label>
+        <input
+          type="text"
+          id="pet"
+          name="pet"
+          placeholder="Enter pet's name"
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+      <hr />
+      <form action="pages/animalGallery.html" method="GET">
+        <button type="submit">Make pet</button>
+      </form>
+      <a href="pages/petPage.html">go to pet page</a><br />
+      <a href="pages/animalGallery.html">go to Pet Creation page</a>
+    </div>
+    <!-- GIF -->
+    <div id="gif-container"></div>
+    <script src="float.js"></script>
+
+    <script>
+      const form = document.getElementById("loginForm");
+      const message = document.getElementById("message");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        message.textContent = "";
+
+        const petName = document.getElementById("pet").value.trim();
+
+        // CHECK LENGTH
+        if (petName.length < 1) {
+          message.textContent =
+            "The pet's name must be at least 1 character long.";
+          return;
+        }
+
+        try {
+          const res = await fetch(
+            `/check-pet?name=${encodeURIComponent(petName)}`,
+          );
+          const data = await res.json();
+
+          if (data.exists) {
+            window.location.href = `/PETpetPageAmanda.html?name=${encodeURIComponent(petName)}`;
+          } else {
+            message.textContent =
+              "I CAN'T FIND ${encodeURIComponent(petName)} YOU SHOULD MAKE A NEW ONE!";
+          }
+        } catch (err) {
+          message.textContent = "ERROR SERVER";
+          console.error(err);
+        }
+      });
+    </script>
   </body>
 </html>
