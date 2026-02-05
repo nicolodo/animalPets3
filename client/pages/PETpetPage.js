@@ -24,9 +24,9 @@ let stats = [
 
 const item = [
   { itemName: "Bookstore", cost: 10, itemIncrease: 2 , stat: "Knowledge", numberBought: 0},
-  { itemName: "Gym Membership", cost: 50, itemIncrease: 3 , stat: "Knowledge", numberBought: 0},
-  { itemName: "Brew tea", cost: 100, itemIncrease: 5 , stat: "Knowledge", numberBought: 0},
-  { itemName: "Movie tickets", cost: 150, itemIncrease: 10 , stat: "Knowledge", numberBought: 0},
+  { itemName: "Gym Membership", cost: 50, itemIncrease: 3 , stat: "Health", numberBought: 0},
+  { itemName: "Brew tea", cost: 100, itemIncrease: 5 , stat: "Nutrition", numberBought: 0},
+  { itemName: "Movie tickets", cost: 150, itemIncrease: 10 , stat: "Happiness", numberBought: 0},
 ];
 
 const image = document.querySelector("img");
@@ -38,15 +38,18 @@ let saveGame = document.getElementById("saveGame");
 
 function game() {
   // loadGame();
+  // let i=1;
   setInterval(function () {
-    state.mps = state.mps //+ state.stats;
+    state.money += state.mps //+ state.stats;
+    // console.log("hello",i)
+    // i++
     updateText();
   }, 1000);
 }
 
 function updateText() {
-    mpsDisplay.innerText = state.mps;
-    statsDisplay.innerText = 'MPS:'+String(state.stats);
+    // mpsDisplay.innerText = state.mps;
+    mpsDisplay.innerText = 'MPS:'+String(state.mps);
     moneyDisplay.innerText = 'Money:'+String(state.money);
 }
 
