@@ -4,39 +4,59 @@ console.log("This is the Pet Animal Page");
 // key: stats = attributes of pet
 // Key: items = shop items to buy
 let state = {
+  money: 100,
   mps: 1,
   items: [],
   stats: [],
   settings: [],
 };
 
+let stats = [
+  // "knowledge"= 0,
+  // "Health"=0,
+  // "Nutrition"=0,
+  // "Happiness"=0
+  { statsName: "Knowledge", statsValue: 0 },
+  { statsName: "Health", statsValue: 0 },
+  { statsName: "Nutrition", statsValue: 0 },
+  { statsName: "Happiness", statsValue: 0 },
+];
+
+const item = [
+  { itemName: "Bookstore", cost: 10, itemIncrease: 2 , stat: "Knowledge", numberBought: 0},
+  { itemName: "Gym Membership", cost: 50, itemIncrease: 3 , stat: "Knowledge", numberBought: 0},
+  { itemName: "Brew tea", cost: 100, itemIncrease: 5 , stat: "Knowledge", numberBought: 0},
+  { itemName: "Movie tickets", cost: 150, itemIncrease: 10 , stat: "Knowledge", numberBought: 0},
+];
+
 const image = document.querySelector("img");
+const moneyDisplay = document.getElementById("money");
 const mpsDisplay = document.getElementById("mps");
 const statsDisplay = document.getElementById("stats");
 const shop = document.getElementById("shop");
 let saveGame = document.getElementById("saveGame");
 
 function game() {
-  loadGame();
+  // loadGame();
   setInterval(function () {
-    state.mps = state.mps + state.stats;
-    mpsDisplay.innerText = state.mps;
-    statsDisplay.innerText = state.stats;
+    state.mps = state.mps //+ state.stats;
+    updateText();
   }, 1000);
 }
 
+function updateText() {
+    mpsDisplay.innerText = state.mps;
+    statsDisplay.innerText = 'MPS:'+String(state.stats);
+    moneyDisplay.innerText = 'Money:'+String(state.money);
+}
+
 image.addEventListener("click", function () {
-  state.mps++;
-  mpsDisplay.innerText = state.mps;
-  console.log(state.mps);
+  state.money++;
+  moneyDisplay.innerText = 'Money:'+String(state.money);
+  console.log(state.money);
 });
 
-const item = [
-  { itemName: "Bookstore", itemCost: 10, itemIncrease: 2 },
-  { itemName: "Gym Membership", itemCost: 50, itemIncrease: 3 },
-  { itemName: "Brew tea", itemCost: 100, itemIncrease: 5 },
-  { itemName: "Movie tickets", itemCost: 150, itemIncrease: 10 },
-];
+
 
 function generateShop() {
   item.forEach(function (item) {
@@ -47,10 +67,13 @@ function generateShop() {
     itemName.innerText = item.itemName;
 
     const itemCost = document.createElement("p");
-    itemCost.innerText = "Cost: " + item.itemCost;
+    itemCost.innerText = "Cost: " + item.cost;
 
     const itemIncrease = document.createElement("p");
     itemIncrease.innerText = "Increase: " + item.itemIncrease;
+
+    const numberBought = document.createElement("p");
+    numberBought.innerText = "number bought: " + item.numberBought;
 
     const buyButton = document.createElement("button");
     buyButton.classList.add("buy-button");
@@ -60,7 +83,7 @@ function generateShop() {
       purchaseItem(item);
     });
 
-    itemContainer.append(itemName, itemCost, itemIncrease, buyButton);
+    itemContainer.append(itemName, itemCost, itemIncrease, numberBought, buyButton);
 
     shop.append(itemContainer);
   });
@@ -78,13 +101,6 @@ function generateShop() {
 
 generateShop();
 
-let stats = [
-  { statsName: "Knowledge", statsValue: 0 },
-  { statsName: "Health", statsValue: 0 },
-  { statsName: "Nutrition", statsValue: 0 },
-  { statsName: "Happiness", statsValue: 0 },
-];
-
 function generateStats() {
   stats.forEach(function (stats) {
     const statsContainer = document.createElement("div");
@@ -96,6 +112,7 @@ function generateStats() {
     const statsValue = document.createElement("p");
     statsValue.innerText = stats.statsValue;
 
+
     statsContainer.append(statsName, statsValue);
     statsDisplay.append(statsContainer);
   });
@@ -104,12 +121,24 @@ function generateStats() {
 generateStats();
 
 function purchaseItem(itemParam) {
-  if (itemParam.cost > state.mps) {
-    alert("Not quite enough money to buy that yet.");
-    return;
+  console.log("purchaseItem()")
+  console.log("money:",state.money)
+  console.log("item cost:",itemParam.cost)
+  if (state.money > itemParam.cost) {
+    // alert("Not quite enough money to buy that yet.");
+    state.money -= itemParam.cost
+    state.mps += itemParam.itemIncrease
+    console.log("You bougt a ",itemParam.itemName)
+    // stats
+  } else {
+  // if (itemParam.cost < state.money) {
+    // return;
+    console.log("you are short by:",(itemParam.cost - state.money))
   }
 
-  state.mps -= itemParam.cost;
-  state.mps = +itemParam.increase;
-  state.stats += itemParam.increase;
+  // state.mps -= itemParam.cost;
+  // state.mps = +itemParam.increase;
+  // state.stats += itemParam.increase;
 }
+
+game()
