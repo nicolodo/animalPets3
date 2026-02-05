@@ -8,6 +8,12 @@ body {
 #form {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 300px;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
 }
 
 p {
@@ -32,7 +38,7 @@ input {
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: green;
+  background-color: rgb(30, 102, 191);
   color: greenyellow;
 }
 
@@ -89,7 +95,7 @@ input {
 input {
   display: flex;
   width: 80vw;
-  background-color: green;
+  background-color: rgb(70, 226, 96);
   padding: 10px;
   justify-content: flex-start;
   position: relative;

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="animalGallery.js" defer></script>
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="thumbnailContainer" class="thumbnail-container"></div>
+
+    <form id="createForm">
+      <select name="animal_id" id="animal_id">
+        <option value="bear">bear</option>
+        <option value="cat">cat</option>
+        <option value="dog">dog</option>
+        <option value="fox">fox</option>
+        <option value="peacock">peacock</option>
+        <option value="penguin">penguin</option>
+        <option value="rabbit">rabbit</option>
+        <option value="raccoon">raccoon</option>
+        <option value="sloth">sloth</option>
+        <option value="squirrel">squirrel</option>
+      </select>
+      <input
+        name="userPetName"
+        type="text"
+        placeholder="Give your pet a name!"
+        required
+      />
+      <button id="button" type="submit">SUBMIT</button>
+    </form>
+  </body>
+</html>
