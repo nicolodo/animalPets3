@@ -51,6 +51,10 @@ function updateText() {
     // mpsDisplay.innerText = state.mps;
     mpsDisplay.innerText = 'MPS:'+String(state.mps);
     moneyDisplay.innerText = 'Money:'+String(state.money);
+
+    // item.forEach(item) {
+    //   // item
+    // }
 }
 
 image.addEventListener("click", function () {
@@ -65,6 +69,7 @@ function generateShop() {
   item.forEach(function (item) {
     const itemContainer = document.createElement("div");
     itemContainer.classList.add("shop-item");
+    // itemContainer.id = item.itemName;
 
     const itemName = document.createElement("p");
     itemName.innerText = item.itemName;
@@ -84,6 +89,7 @@ function generateShop() {
 
     buyButton.addEventListener("click", function () {
       purchaseItem(item);
+      updateText();
     });
 
     itemContainer.append(itemName, itemCost, itemIncrease, numberBought, buyButton);
@@ -131,11 +137,12 @@ function purchaseItem(itemParam) {
     // alert("Not quite enough money to buy that yet.");
     state.money -= itemParam.cost
     state.mps += itemParam.itemIncrease
-    console.log("You bougt a ",itemParam.itemName)
+    console.log("You bought a ",itemParam.itemName)
     // stats
   } else {
   // if (itemParam.cost < state.money) {
     // return;
+    prompt("you cannot afford that!");
     console.log("you are short by:",(itemParam.cost - state.money))
   }
 
