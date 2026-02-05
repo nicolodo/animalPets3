@@ -145,6 +145,7 @@ function purchaseItem(itemParam) {
     prompt("you cannot afford that!");
     console.log("you are short by:",(itemParam.cost - state.money))
   }
+  updateText();
 
   // state.mps -= itemParam.cost;
   // state.mps = +itemParam.increase;
