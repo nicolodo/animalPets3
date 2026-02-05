@@ -4,13 +4,29 @@ console.log("This is the Pet Animal Page");
 // key: stats = attributes of pet
 // Key: items = shop items to buy
 let state = {
+  money: 0,
   mps: 1,
   items: [],
   stats: [],
   settings: [],
 };
 
+let stats = [
+  { statsName: "Knowledge", statsValue: 0 },
+  { statsName: "Health", statsValue: 0 },
+  { statsName: "Nutrition", statsValue: 0 },
+  { statsName: "Happiness", statsValue: 0 },
+];
+
+const item = [
+  { itemName: "Bookstore", itemCost: 10, itemIncrease: 2 },
+  { itemName: "Gym Membership", itemCost: 50, itemIncrease: 3 },
+  { itemName: "Brew tea", itemCost: 100, itemIncrease: 5 },
+  { itemName: "Movie tickets", itemCost: 150, itemIncrease: 10 },
+];
+
 const image = document.querySelector("img");
+const moneyDisplay = document.getElementById("money");
 const mpsDisplay = document.getElementById("mps");
 const statsDisplay = document.getElementById("stats");
 const shop = document.getElementById("shop");
@@ -19,24 +35,20 @@ let saveGame = document.getElementById("saveGame");
 function game() {
   loadGame();
   setInterval(function () {
-    state.mps = state.mps + state.stats;
+    state.mps = state.mps //+ state.stats;
     mpsDisplay.innerText = state.mps;
     statsDisplay.innerText = state.stats;
+    moneyDisplay.innerText = state.money;
   }, 1000);
 }
 
 image.addEventListener("click", function () {
-  state.mps++;
-  mpsDisplay.innerText = state.mps;
-  console.log(state.mps);
+  state.money++;
+  mpsDisplay.innerText = state.money;
+  console.log(state.money);
 });
 
-const item = [
-  { itemName: "Bookstore", itemCost: 10, itemIncrease: 2 },
-  { itemName: "Gym Membership", itemCost: 50, itemIncrease: 3 },
-  { itemName: "Brew tea", itemCost: 100, itemIncrease: 5 },
-  { itemName: "Movie tickets", itemCost: 150, itemIncrease: 10 },
-];
+
 
 function generateShop() {
   item.forEach(function (item) {
@@ -77,13 +89,6 @@ function generateShop() {
 }
 
 generateShop();
-
-let stats = [
-  { statsName: "Knowledge", statsValue: 0 },
-  { statsName: "Health", statsValue: 0 },
-  { statsName: "Nutrition", statsValue: 0 },
-  { statsName: "Happiness", statsValue: 0 },
-];
 
 function generateStats() {
   stats.forEach(function (stats) {
