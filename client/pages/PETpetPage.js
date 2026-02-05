@@ -88,7 +88,10 @@ function generateShop() {
     buyButton.innerText = "Buy";
 
     buyButton.addEventListener("click", function () {
-      purchaseItem(item);
+      if (purchaseItem(item)) {
+        item.numberBought++;
+        numberBought.innerText ="number bought: " + item.numberBought;
+      };
       updateText();
     });
 
@@ -139,11 +142,13 @@ function purchaseItem(itemParam) {
     state.mps += itemParam.itemIncrease
     console.log("You bought a ",itemParam.itemName)
     // stats
+    return true
   } else {
   // if (itemParam.cost < state.money) {
     // return;
     prompt("you cannot afford that!");
     console.log("you are short by:",(itemParam.cost - state.money))
+    return false
   }
   updateText();
 
