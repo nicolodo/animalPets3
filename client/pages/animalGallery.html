@@ -3,15 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      type="module"
-      src="animalGallery.js"
-      defer
-    ></script>
+    <script type="module" src="animalGallery.js" defer></script>
     <link rel="stylesheet" href="/src/style.css" />
     <title>Document</title>
   </head>
   <body>
     <div id="thumbnailContainer" class="thumbnail-container"></div>
+
+    <form id="createForm">
+      <input
+        name="userPetName"
+        type="text"
+        placeholder="Give your pet a name!"
+        required
+      />
+      <button id="button" type="submit">SUBMIT</button>
+    </form>
   </body>
 </html>

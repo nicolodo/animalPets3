@@ -84,6 +84,48 @@ function createThumbnails() {
 
 createThumbnails();
 
-const buyButton = document.createElement("button"); // create a button. give
-buyButton.classList.add("buy-button"); // give button a class name="buy-button"
-buyButton.innerText = "Buy"; // give button some text
+//------------------------------MAKE A PET (FORM CODE) -----------------------------------------------
+
+const myCreateForm = document.querySelector(".createForm");
+
+myCreateForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const rawFormData = new FormData(form);
+  const jsObjectPlease = Object.fromEntries(rawFormData);
+
+  console.log(jsObjectPlease); // Check in your console to see what this variable looks like
+});
+
+//async function handleSubmit(event) {
+// alert("Pet Created!");
+//  event.preventDefault();
+//  myCreateForm.addEventListener("submit", handleSubmit);
+
+//const rawFormData = new FormData(myCreateForm);
+
+// const jsFormData = Object.fromEntries(rawFormData);
+// console.log(jsFormData);
+
+// prepare to send this form data across the internet
+// so we'll turn it into JSON
+//const jsonFormData = JSON.stringify(jsFormData);
+//console.log(jsFormData, jsonFormData); // you will see the js format of the form data and the json version.
+
+// now we need to make a template for the sending of this data.
+//const serverPostResp = await fetch(
+//"https://animal-pets-server.onrender.com/",
+// {
+// headers: {
+//  "Content-Type": "application/json",
+//},
+//method: "POST",
+//body: jsonFormData,
+//},
+//);
+// window.location.reload() not sure what this is for ????
+// const res = await serverPostResp.json();
+// console.log(res); // remember we asked the server, when it receives a get/post request, to send the client back a console.log response displaying the BODY content of the data it just received. res.json({ message: req.body }); So it shows us the actual users inputted text (which we made the body in json format above)
+//}
+
+// add an event listener to the form, so when the user submits the form, run the handleSubmit function
+// addEventListenr passes in the arguments - that not our job. So *it* passes in the 'Event Object'
