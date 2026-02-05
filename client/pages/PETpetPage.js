@@ -44,7 +44,7 @@ function game() {
 
 image.addEventListener("click", function () {
   state.money++;
-  mpsDisplay.innerText = state.money;
+  moneyDisplay.innerText = 'Money:'+String(state.money);
   console.log(state.money);
 });
 
