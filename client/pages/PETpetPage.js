@@ -23,10 +23,10 @@ let stats = [
 ];
 
 const item = [
-  { itemName: "Bookstore", cost: 10, itemIncrease: 2 , stat: "Knowledge", numberBought: 0},
+  { itemName: "Book", cost: 10, itemIncrease: 2 , stat: "Knowledge", numberBought: 0},
   { itemName: "Gym Membership", cost: 50, itemIncrease: 3 , stat: "Health", numberBought: 0},
-  { itemName: "Brew tea", cost: 100, itemIncrease: 5 , stat: "Nutrition", numberBought: 0},
-  { itemName: "Movie tickets", cost: 150, itemIncrease: 10 , stat: "Happiness", numberBought: 0},
+  { itemName: "Tea", cost: 100, itemIncrease: 5 , stat: "Nutrition", numberBought: 0},
+  { itemName: "Movie ticket", cost: 150, itemIncrease: 10 , stat: "Happiness", numberBought: 0},
 ];
 
 const image = document.querySelector("img");
