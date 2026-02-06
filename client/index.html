@@ -51,7 +51,7 @@
 
         try {
           const res = await fetch(
-            `/check-pet?name=${encodeURIComponent(petName)}`,
+            `https://animal-pets-server.onrender.com/check-pet?name=${encodeURIComponent(petName)}`,
           );
           const data = await res.json();
 
