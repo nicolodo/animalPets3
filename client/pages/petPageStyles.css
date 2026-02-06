@@ -19,6 +19,17 @@ div.pet-page-container {
   margin-inline: auto;
 }
 
+/* #stats {
+  display: flex;
+  padding: 10px;
+  justify-content: space-around;
+} */
+
+#stats-title {
+  display: flex;
+  justify-content: center;
+}
+
 .pet-description {
   display: flex;
 }
