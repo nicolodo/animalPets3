@@ -7,11 +7,12 @@ div.pet-page-container {
 .stat-container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 #stats {
-  display: flex;
+  display: none;
+  /* display: flex; */
   text-align: center;
   justify-content: center;
   left: 0;
@@ -72,13 +73,3 @@ div.pet-page-container {
   margin-inline: auto;
 }
 
-#stats {
-  display: flex;
-  padding: 10px;
-  justify-content: space-around;
-}
-
-#stats-title {
-  display: flex;
-  justify-content: center;
-}
