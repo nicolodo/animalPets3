@@ -36,6 +36,10 @@ const statsDisplay = document.getElementById("stats");
 const shop = document.getElementById("shop");
 let saveGame = document.getElementById("saveGame");
 
+let log1 = document.getElementById("log1");
+let log2 = document.getElementById("log2");
+let log3 = document.getElementById("log3");
+
 function game() {
   // loadGame();
   // let i=1;
@@ -60,6 +64,7 @@ function updateText() {
 image.addEventListener("click", function () {
   state.money++;
   moneyDisplay.innerText = 'Money:'+String(state.money);
+  updateLog("Here's coin "+ state.money + " for petting your pet!")
   console.log(state.money);
 });
 
@@ -140,14 +145,15 @@ function purchaseItem(itemParam) {
     // alert("Not quite enough money to buy that yet.");
     state.money -= itemParam.cost
     state.mps += itemParam.itemIncrease
-    console.log("You bought a ",itemParam.itemName)
+    updateLog("You bought a " + itemParam.itemName)
     // stats
     return true
   } else {
   // if (itemParam.cost < state.money) {
     // return;
-    prompt("you cannot afford that!");
-    console.log("you are short by:",(itemParam.cost - state.money))
+    // log.innerHTML = ("Log: you cannot afford that!");
+    // log.innerHTML = ("you are short by: " + String(itemParam.cost - state.money))
+    updateLog("you are short by: " + String(itemParam.cost - state.money))
     return false
   }
   updateText();
@@ -155,6 +161,12 @@ function purchaseItem(itemParam) {
   // state.mps -= itemParam.cost;
   // state.mps = +itemParam.increase;
   // state.stats += itemParam.increase;
+}
+
+function updateLog(newString){
+  log1.innerHTML = log2.innerHTML
+  log2.innerHTML = log3.innerHTML
+  log3.innerHTML = "Log: " + newString
 }
 
 game()
