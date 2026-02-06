@@ -8,10 +8,13 @@ myServer.use(express.json());
 myServer.use(express.text());
 myServer.use(cors());
 dotenv.config();
+console.log(process.env.DB_CONN_STRING);
 
 // connect my server to my database (supabase)
 const db = new pg.Pool({
-  connectionString: process.env.DB_KEY,
+  // connectionString: process.env.DB_KEY,
+  connectionString: process.env.DB_CONN_STRING,
+  ssl: { rejectUnauthorized: false },
 });
 
 // Set up a route handler between my server and database.
@@ -46,20 +49,28 @@ myServer.get("/check-pet", async (request, response) => {
 
   // Length check
   if (!petName || petName.trim().length < 1) {
-    return res.status(400).json({
+    return response.status(400).json({
       exists: false,
-      error: "he pet's name must be at least 1 character long.",
+      error: "The pet's name must be at least 1 character long.",
     });
   }
 
   try {
-    const result = await pool.query("SELECT * FROM pet WHERE name = $1", [
+    const result = await db.query("SELECT * FROM pets WHERE name = $1", [
       petName.trim(),
     ]);
 
-    res.json({ exists: result.rows.length > 0 });
+    if (result.rows.length > 0) {
+      response.json({
+        exists: true,
+        pet: result.rows[0],
+      });
+    } else {
+      response.json({ exists: false });
+    }
+    //res.json({ exists: result.rows.length > 0 });
   } catch (err) {
     console.error("DB ERROR:", err);
-    res.status(500).json({ exists: false });
+    response.status(500).json({ exists: false });
   }
 });
