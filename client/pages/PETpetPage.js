@@ -25,8 +25,8 @@ let stats = [
 const item = [
   { itemName: "Book", cost: 10, itemIncrease: 2 , stat: "Knowledge", numberBought: 0},
   { itemName: "Gym Membership", cost: 250, itemIncrease: 3 , stat: "Health", numberBought: 0},
-  { itemName: "Tea", cost: 1000, itemIncrease: 5 , stat: "Nutrition", numberBought: 0},
-  { itemName: "Movie ticket", cost: 2000, itemIncrease: 10 , stat: "Happiness", numberBought: 0},
+  { itemName: "Tea", cost: 10000, itemIncrease: 5 , stat: "Nutrition", numberBought: 0},
+  { itemName: "Movie ticket", cost: 200000, itemIncrease: 10 , stat: "Happiness", numberBought: 0},
 ];
 
 const image = document.querySelector("img");
